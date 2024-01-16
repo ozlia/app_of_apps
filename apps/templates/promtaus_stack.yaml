@@ -1,0 +1,27 @@
+# Child application for prometheus, within templates in apps folder
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: 'https://prometheus-community.github.io/helm-charts'
+      chart: kube-prometheus-stack
+      targetRevision: 55.8.2
+      helm:
+        valueFiles:
+        - $values/promtaus_stack/kube-prometheus-stack-myvalues.yaml
+    - repoURL: https://github.com/ozlia/app_of_apps.git
+      targetRevision: main
+      ref: values  
+  syncPolicy:
+    automated:
+      prune: true # or false, depending on your needs
+      selfHeal: true # or false, based on preference   
+    syncOptions:     # Sync options which modifies sync behavior
+    - CreateNamespace=true 
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: kube-prometheus-stack
