@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mydemo
+  name: app_of_apps
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: "<repo URL starts with 'https' or 'git@github.com'>"
-    path: "helm-guestbook"
+    repoURL: https://github.com/ozlia/app_of_apps.git
+    path: "apps/"
     targetRevision: HEAD
   destination:
     server: "https://kubernetes.default.svc"
