@@ -7,8 +7,12 @@ spec:
   project: default
   source:
     repoURL: https://github.com/ozlia/app_of_apps.git
-    path: "apps/"
+    path: "apps"
     targetRevision: HEAD
   destination:
     server: "https://kubernetes.default.svc"
     namespace: default
+  syncPolicy:
+    automated:
+      prune: true # or false, depending on your needs
+      selfHeal: true # or false, based on preference  
