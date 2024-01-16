@@ -12,10 +12,16 @@ spec:
       targetRevision: 8.10.0
       helm:
         valueFiles:
-        - $values/elasticsearch/es-myvalues.yaml
+        - $values/efk/es-myvalues.yaml
     - repoURL: https://github.com/ozlia/app_of_apps.git
       targetRevision: main
       ref: values  
+    - repoURL: https://helm.elastic.co
+      chart: kibana
+      targetRevision: 8.10.0
+      helm:
+        valueFiles:
+        - $values/efk/efk/kibana-myvalues.yml
   syncPolicy:
     automated:
       prune: true # or false, depending on your needs

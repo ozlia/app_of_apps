@@ -1,0 +1,8 @@
+ingress:
+  enabled: true
+  hosts:
+    - host: dakarkibana.ddns.net
+      paths:
+        - path: /
+
+# AAEAAWVsYXN0aWMva2liYW5hL215LWtpYmFuYS1raWJhbmE6bHExU3RQTlJURzZ2TVQwb3NMYU9YQQ
